@@ -21,13 +21,13 @@ input, select, button{
 .icone{
   color: white;
 }
-button{
+/* button{
   color: white;
   background-color: green;
   cursor: pointer;
   padding: 3px;
   border: 1px solid rgb(255, 255, 255);
-}
+} */
 .break_line{
   display: none;
 }

@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
+import { 
+  Button,
+  Navbar,
+  Nav,
+  NavItem,
+  NavLink,
+  Input
+} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faUser, faPhone, faListNumeric, faPerson, faPaperPlane} from '@fortawesome/free-solid-svg-icons';
-import './App.css';
+import './Header.css';
 
 function App() {
   const [valores, setarValores] = useState();
@@ -9,54 +17,73 @@ function App() {
   const CarregaValores = valor =>{
       setarValores(preValor =>({
       ...preValor,
-      [valor.target.nome] : valor.target.value,
+      [valor.target.name] : valor.target.value,
       
       }))
       console.log(valor.target.value);
   }
 
+  const cliqueBotao = () =>{
+    console.log(valores);
+  }
+
   return (
     <div className="App">
+      <Navbar color="primary" dark expand="md">
+        <Nav className="mr-auto" navbar>
+            <NavItem>
+              <NavLink>Sistema de Gerenciamento</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink>-Cadastro de Funcionários</NavLink>
+            </NavItem>
+        </Nav>
+      </Navbar>
+
         <div className='container'>
           <div className='container-form'>
 
 
               <FontAwesomeIcon icon={ faUser } className='icone'> </FontAwesomeIcon>
-              <input 
+              <Input 
               type='text' 
               name='nome' 
-              placeholder='digite seu nome' onChange={CarregaValores}></input> <br className='break_line'/>
+              placeholder='digite seu nome' onChange={CarregaValores}></Input> <br className='break_line'/>
 
               <FontAwesomeIcon icon={ faEnvelope }  className='icone'> </FontAwesomeIcon>
-              <input 
+              <Input 
               type='email' 
               name='email' 
-              placeholder='digite seu email'></input> <br className='break_line'/>
+              placeholder='digite seu email' onChange={CarregaValores}></Input> <br className='break_line'/>
 
               <FontAwesomeIcon icon={ faPhone } className='icone'> </FontAwesomeIcon>
-              <input 
+              <Input 
               type='text' 
               name='telefone' 
-              placeholder='digite seu telefone'></input> <br className='break_line'/>
+              placeholder='digite seu telefone' onChange={CarregaValores}></Input> <br className='break_line'/>
 
               <FontAwesomeIcon icon={ faPerson } className='icone'> </FontAwesomeIcon>
-              <input 
+              <Input 
               type='text' 
               name='cpf' 
-              placeholder='digite seu cpf'></input> <br className='break_line'/>
+              placeholder='digite seu cpf' onChange={CarregaValores}></Input> <br className='break_line'/>
 
               <FontAwesomeIcon icon={ faListNumeric } className='icone'> </FontAwesomeIcon>
-              <select name='cargo'>
+           
+              <Input type="select" name="cargo" id="exampleSelect" onChange={CarregaValores}>
                 <option value='Desenvolvedor'>Desenvolvedor</option>
                 <option value='Suporte em Redes'>Suporte em Redes</option>
                 <option value='Gerente'>Gerente</option>
                 <option value='Financeiro'>Financeiro</option>
                 <option value='Marketing'>Marketing</option>
-              </select> <br className='break_line'/>
+              </Input><br className='break_line'/>
 
-              <button type='button' name='botao'>
-              <FontAwesomeIcon icon={ faPaperPlane } className='icone'> </FontAwesomeIcon>  Enviar Informações
-              </button>
+              <Button type='button' name='botao' onClick={() => cliqueBotao()} color="success">
+                <FontAwesomeIcon icon={ faPaperPlane } className='icone'> </FontAwesomeIcon>
+                  &nbsp;&nbsp;&nbsp;Cadastrar Informações
+              </Button>
+
+              
           </div>
         </div>
     </div>
