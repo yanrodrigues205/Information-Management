@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { 
   Button,
   Navbar,
+  Container,
+  Col,
   Nav,
   NavItem,
   NavLink,
@@ -13,7 +15,6 @@ import './Header.css';
 
 function App() {
   const [valores, setarValores] = useState();
-
   const CarregaValores = valor =>{
       setarValores(preValor =>({
       ...preValor,
@@ -23,12 +24,13 @@ function App() {
       console.log(valor.target.value);
   }
 
-  const cliqueBotao = () =>{
-    console.log(valores);
-  }
+    const cliqueBotao = () =>{
+      console.log(valores);
+    }
 
   return (
     <div className="App">
+   
       <Navbar color="primary" dark expand="md">
         <Nav className="mr-auto" navbar>
             <NavItem>
@@ -40,33 +42,32 @@ function App() {
         </Nav>
       </Navbar>
 
-        <div className='container'>
-          <div className='container-form'>
-
-
-              <FontAwesomeIcon icon={ faUser } className='icone'> </FontAwesomeIcon>
+    <Container>
+      <br/><br/>
+        <Col xs="6">
+            <FontAwesomeIcon icon={ faUser } className='icone'> </FontAwesomeIcon>
               <Input 
               type='text' 
-              name='nome' 
-              placeholder='digite seu nome' onChange={CarregaValores}></Input> <br className='break_line'/>
+              name='nome' minLength={10} maxLength={100}
+              placeholder='digite seu nome' pathern='[A-Za-z].{10, }' onChange={CarregaValores} ></Input> 
 
               <FontAwesomeIcon icon={ faEnvelope }  className='icone'> </FontAwesomeIcon>
               <Input 
               type='email' 
               name='email' 
-              placeholder='digite seu email' onChange={CarregaValores}></Input> <br className='break_line'/>
+              placeholder='digite seu email' onChange={CarregaValores}></Input> 
 
               <FontAwesomeIcon icon={ faPhone } className='icone'> </FontAwesomeIcon>
               <Input 
               type='text' 
               name='telefone' 
-              placeholder='digite seu telefone' onChange={CarregaValores}></Input> <br className='break_line'/>
+              placeholder='digite seu telefone' minLength={10} maxLength={16} onChange={CarregaValores}></Input> 
 
               <FontAwesomeIcon icon={ faPerson } className='icone'> </FontAwesomeIcon>
               <Input 
               type='text' 
               name='cpf' 
-              placeholder='digite seu cpf' onChange={CarregaValores}></Input> <br className='break_line'/>
+              placeholder='digite seu cpf' as={IMaskInput}  minLength={13} maxLength={15} onChange={CarregaValores}></Input> 
 
               <FontAwesomeIcon icon={ faListNumeric } className='icone'> </FontAwesomeIcon>
            
@@ -79,13 +80,15 @@ function App() {
               </Input><br className='break_line'/>
 
               <Button type='button' name='botao' onClick={() => cliqueBotao()} color="success">
-                <FontAwesomeIcon icon={ faPaperPlane } className='icone'> </FontAwesomeIcon>
+                <FontAwesomeIcon icon={ faPaperPlane } className='icone_bt'> </FontAwesomeIcon>
                   &nbsp;&nbsp;&nbsp;Cadastrar Informações
               </Button>
-
-              
-          </div>
-        </div>
+          </Col>
+          <Col  xs="6">
+              .col-6
+          </Col>
+    </Container>
+        
     </div>
   );
 }

@@ -5,21 +5,22 @@
 }
 .container{
   display: flex;
-  margin: 0 auto;
-  align-items: center;
-  justify-content: center;
+  width: 100vw;
 }
-.container-form{
-  display: inline-block;
-  padding: 20px;
-  margin: 10px;
-  background-color: rgb(94, 94, 255);
+Col{
+  width: 50vw;
 }
 input, select, button{
   margin: 10px;
 }
+.icone_bt{
+  color: rgb(255, 255, 255);
+}
 .icone{
-  color: white;
+  color: rgb(16, 80, 255);
+}
+input:invalid{
+  border: 1.5px solid red;
 }
 /* button{
   color: white;
@@ -28,16 +29,12 @@ input, select, button{
   padding: 3px;
   border: 1px solid rgb(255, 255, 255);
 } */
-.break_line{
-  display: none;
-}
-@media (max-width:1080) {
-  .container-form{
-    display: flex;
-  }
-}
-@media (max-width:780px) {
-  .break_line{
+@media (max-width: 1000px) {
+  .container{
     display: block;
+  }
+  .col-6{
+    width: 100%;
+    padding: 10px;
   }
 }
