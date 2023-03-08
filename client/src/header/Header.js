@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Axios from 'axios';
 import { 
   Button,
   Navbar,
@@ -18,15 +19,25 @@ function App() {
   const CarregaValores = valor =>{
       setarValores(preValor =>({
       ...preValor,
-      [valor.target.name] : valor.target.value,
+      [valor.target.name] : valor.target.value, //setando os valores e mandando para um array no react 
       
       }))
       console.log(valor.target.value);
   }
 
     const cliqueBotao = () =>{
-      console.log(valores);
-    }
+      Axios.post('http://localhost:3001/cadastro',{ 
+      //MANDANDO DADOS POR POST EM FORMATO DE ARRAY,API PARA O BACK END, QUE ESTA NA PORTA
+      //  3001/CADASTRO, O FRONT ESTÁ NA 3000;
+      nome: valores.nome,
+      email: valores.email,
+      fone: valores.telefone,
+      cpf: valores.cpf,
+      cargo: valores.cargo
+    }).then((response)=>{
+      console.log(response);
+    });
+    };
 
   return (
     <div className="App">
@@ -67,7 +78,7 @@ function App() {
               <Input 
               type='text' 
               name='cpf' 
-              placeholder='digite seu cpf' as={IMaskInput}  minLength={13} maxLength={15} onChange={CarregaValores}></Input> 
+              placeholder='digite seu cpf' minLength={13} maxLength={15} onChange={CarregaValores}></Input> 
 
               <FontAwesomeIcon icon={ faListNumeric } className='icone'> </FontAwesomeIcon>
            
