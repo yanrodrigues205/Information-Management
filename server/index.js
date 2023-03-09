@@ -23,12 +23,23 @@ const { cargo } = req.body;
 
 let sql = "INSERT INTO `funcionarios`(`nome_fun`, `email_fun`, `fone_fun`, `cpf_fun`, `cargo_fun`, `data_insert_fun`) VALUES (?,?,?,?,?,NOW())";
     db.query(sql, [nome, email, fone, cpf, cargo], (err, res) => {
-        console.log(err);
+       console.log("REGISTRO INSERIDO COM SUCESSO!");
     });
 });
-// app.get('/', (req, res)=>{
-//    
-// });
+
+
+app.get('/registros', (req, res)=>{
+    let sql = "SELECT * FROM `funcionarios`";
+    db.query(sql, (err, result) =>{
+        if (err){
+            console.log(err);
+        }else{
+            res.send(result);
+        }
+    });
+});//ENVIA DADOS PARA A TABELA DO FRONT END
+
+
 
 
 app.listen(3001, () =>{

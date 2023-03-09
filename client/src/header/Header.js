@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { 
   Button,
@@ -8,14 +8,18 @@ import {
   Nav,
   NavItem,
   NavLink,
+  Table,
   Input
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faUser, faPhone, faListNumeric, faPerson, faPaperPlane} from '@fortawesome/free-solid-svg-icons';
 import './Header.css';
+import Th from './table/funcionarios';
 
 function App() {
   const [valores, setarValores] = useState();
+  const [listaFuncionarios, setarFunc] = useState();
+  console.log(setarFunc);
   const CarregaValores = valor =>{
       setarValores(preValor =>({
       ...preValor,
@@ -38,6 +42,13 @@ function App() {
       console.log(response);
     });
     };
+
+    useEffect(()=>{
+      Axios.get("http://localhost:3001/registros").then((response) =>{
+        setarFunc(response.data);
+      })
+    }, []);   //USANDO EFEITO PARA PEGAR POR GET OS VALORES DO BACK END Q IRÃO RETORNAR OS REGISTROS DO BANCO
+
 
   return (
     <div className="App">
@@ -96,7 +107,29 @@ function App() {
               </Button>
           </Col>
           <Col  xs="6">
-              .col-6
+          <Table>
+          <thead>
+            <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {
+              typeof listaFuncionarios !== "undefined" && listaFuncionarios.map((values) => {
+                return <Th></Th>;
+              })
+            }
+          {/* <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td> */}
+          </tr>
+          </tbody>
+          </Table>
           </Col>
     </Container>
         
