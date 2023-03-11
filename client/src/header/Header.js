@@ -12,21 +12,21 @@ import {
   Input
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faUser, faPhone, faListNumeric, faPerson, faPaperPlane} from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faUser, faPhone, faListNumeric, faPerson, faPaperPlane, faEye} from '@fortawesome/free-solid-svg-icons';
 import './Header.css';
-import Th from './table/funcionarios';
+import Td from './table';
 
 function App() {
   const [valores, setarValores] = useState();
   const [listaFuncionarios, setarFunc] = useState();
-  console.log(setarFunc);
+  // console.log(setarFunc);
   const CarregaValores = valor =>{
       setarValores(preValor =>({
       ...preValor,
       [valor.target.name] : valor.target.value, //setando os valores e mandando para um array no react 
       
       }))
-      console.log(valor.target.value);
+      // console.log(valor.target.value);
   }
 
     const cliqueBotao = () =>{
@@ -46,6 +46,7 @@ function App() {
     useEffect(()=>{
       Axios.get("http://localhost:3001/registros").then((response) =>{
         setarFunc(response.data);
+        console.log(response.data)
       })
     }, []);   //USANDO EFEITO PARA PEGAR POR GET OS VALORES DO BACK END Q IRÃO RETORNAR OS REGISTROS DO BANCO
 
@@ -110,26 +111,36 @@ function App() {
           <Table>
           <thead>
             <tr>
-            <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Username</th>
+            <th>ID</th>
+            <th>Nome do Funcionário</th>
+            <th>Cargo</th>
+            <th>Informações
+            </th>
           </tr>
         </thead>
         <tbody>
-          <tr>
+        
+         
             {
-              typeof listaFuncionarios !== "undefined" && listaFuncionarios.map((values) => {
-                return <Th></Th>;
-              })
+              typeof listaFuncionarios !== "undefined" && listaFuncionarios.map((value) => {
+                console.log(value.nome_fun)
+                return (
+                  <Td key={value.id_fun}
+                      id_td={value.id_fun}
+                      nome_td={value.nome_fun} //MANDANDO INFORMAÇÕES PARA A TABLE QUE ESTÁ EM : ./table/index.js
+                      cpf_td={value.cpf_fun}
+                      cargo_td={value.cargo_fun}
+                      fone_td={value.fone_fun}
+                      email_td={value.email_fun}
+                  ></Td>
+                );
+               
+              }) 
             }
-          {/* <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td> */}
-          </tr>
-          </tbody>
-          </Table>
+      
+       </tbody>
+          </Table> 
+         
           </Col>
     </Container>
         
