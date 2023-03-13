@@ -8,10 +8,25 @@ export default function Td(props) {//PEGANDO O VALOR VALUES DÁ PÁGINA HEADER.J
                 <>
               
                 <tr>
-                 <th>{props.id_td}</th>
+                <th>{props.id_td}</th>
                 <td>{props.nome_td}</td>
                 <td>{props.cargo_td}</td>
-                <Modal open={open} setOpen={setOpen} className='botao'></Modal>
+                <Modal open={open} setOpen={setOpen} className='botao'
+                //PASSANDO TODOS OS VALORES, ARRAYS E PARAMETROS PARA O MODAL DE EDITAR E EXCLUIR
+                //O NOME DAS VAARIAVEIS SAO COMO TD POIS PERTENCE A CADA LINHA DE REGISTRO DO SISTEMA
+                lista_func={props.lista_func}
+                setar_func={props.setar_func}
+                key={props.id_td}
+                id_td={props.id_td}
+                nome_td={props.nome_td}
+                cargo_td={props.cargo_td}
+                data_td={props.data_td}
+                fone_td={props.fone_td}
+                email_td={props.email_td}
+                cpf_td={props.cpf_td}
+
+                
+                ></Modal>
                 </tr>
                 </>
         

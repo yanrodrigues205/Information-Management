@@ -22,6 +22,10 @@ input, select, button{
 input:invalid{
   border: 1.5px solid red;
 }
+table{
+  padding-left: 40px;
+  display: block;
+}
 /* button{
   color: white;
   background-color: green;
@@ -36,5 +40,12 @@ input:invalid{
   .col-6{
     width: 100%;
     padding: 10px;
+  }
+}
+@media (max-width: 450px) {
+  table{
+    position: relative;
+    left: -70px;
+    display: block;
   }
 }

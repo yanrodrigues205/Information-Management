@@ -38,9 +38,13 @@ function App() {
       fone: valores.telefone,
       cpf: valores.cpf,
       cargo: valores.cargo
+      
     }).then((response)=>{
       console.log(response);
+     
     });
+    alert("FUNCIONARIO CADASTRADO COM SUCESSO!");
+    window.location.reload();
     };
 
     useEffect(()=>{
@@ -72,25 +76,25 @@ function App() {
               <Input 
               type='text' 
               name='nome' minLength={10} maxLength={100}
-              placeholder='digite seu nome' pathern='[A-Za-z].{10, }' onChange={CarregaValores} ></Input> 
+              placeholder='Digite seu Nome' pathern='[A-Za-z].{10, }' onChange={CarregaValores} ></Input> 
 
               <FontAwesomeIcon icon={ faEnvelope }  className='icone'> </FontAwesomeIcon>
               <Input 
               type='email' 
               name='email' 
-              placeholder='digite seu email' onChange={CarregaValores}></Input> 
+              placeholder='Digite seu Email' onChange={CarregaValores}></Input> 
 
               <FontAwesomeIcon icon={ faPhone } className='icone'> </FontAwesomeIcon>
               <Input 
               type='text' 
               name='telefone' 
-              placeholder='digite seu telefone' minLength={10} maxLength={16} onChange={CarregaValores}></Input> 
+              placeholder='Digite seu Telefone' minLength={10} maxLength={16} onChange={CarregaValores}></Input> 
 
               <FontAwesomeIcon icon={ faPerson } className='icone'> </FontAwesomeIcon>
               <Input 
               type='text' 
               name='cpf' 
-              placeholder='digite seu cpf' minLength={13} maxLength={15} onChange={CarregaValores}></Input> 
+              placeholder='Digite seu CPF' minLength={13} maxLength={15} onChange={CarregaValores}></Input> 
 
               <FontAwesomeIcon icon={ faListNumeric } className='icone'> </FontAwesomeIcon>
            
@@ -126,12 +130,17 @@ function App() {
                 console.log(value.nome_fun)
                 return (
                   <Td key={value.id_fun}
+                      lista_func={listaFuncionarios}
+                      setar_func={setarFunc}
                       id_td={value.id_fun}
                       nome_td={value.nome_fun} //MANDANDO INFORMAÇÕES PARA A TABLE QUE ESTÁ EM : ./table/index.js
                       cpf_td={value.cpf_fun}
                       cargo_td={value.cargo_fun}
                       fone_td={value.fone_fun}
                       email_td={value.email_fun}
+                      data_td={value.data_insert_fun}
+
+                      //os nomes das variaveis estao como td pois em conjunto elas representam uma linha de registro da tabela
                   ></Td>
                 );
                
