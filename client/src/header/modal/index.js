@@ -11,22 +11,32 @@ import { MenuItem } from "@material-ui/core";
 
 
 export default function FormDialog(props) {
+
+  const [ editar_valores, setar_valores] = useState();
  
-  const handleClose = () => {
+  const fechar_modal = () => {
     props.setOpen(false);
   };
 
-  const handleClickOpen = () => {
+  const clique_abrir_modal = () => {
     props.setOpen(true);
+  };
+
+  const carregar_valores = (valores) =>{
+      setar_valores((preValores) => ({
+        ...preValores,
+        [valores.target.id] : valores.target.value,
+        
+      }))
   };
 
 
   return (
     <div>
-      <button onClick={handleClickOpen} className='botao'> <FontAwesomeIcon icon={faEye}/>  </button>
+      <button onClick={clique_abrir_modal} className='botao'> <FontAwesomeIcon icon={faEye}/>  </button>
       <Dialog
         open={props.open}
-        onClose={handleClose}
+        onClose={fechar_modal}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Informações do Funcionario</DialogTitle>
@@ -36,8 +46,8 @@ export default function FormDialog(props) {
             margin="dense"
             id="nome"
             label="Nome do Funcionario"
-            // defaultValue={}
-            type="number"
+            defaultValue={props.nome_td}
+            type="text"
             // onChange={handleChangeValues}
             fullWidth
           /> 
@@ -46,7 +56,7 @@ export default function FormDialog(props) {
             margin="dense"
             id="email"
             label="Email do Funcionario"
-            // defaultValue={}
+            defaultValue={props.email_td}
             type="email"
             // onChange={handleChangeValues}
             fullWidth
@@ -56,7 +66,7 @@ export default function FormDialog(props) {
             margin="dense"
             id="telefone"
             label="Telefone do Funcionario"
-            // defaultValue={}
+            defaultValue={props.fone_td}
             type="text"
             // onChange={handleChangeValues}
             fullWidth
@@ -66,7 +76,7 @@ export default function FormDialog(props) {
             margin="dense"
             id="cpf"
             label="CPF do Funcionario"
-            // defaultValue={}
+            defaultValue={props.cpf_td}
             type="text"
             // onChange={handleChangeValues}
             fullWidth
@@ -76,8 +86,8 @@ export default function FormDialog(props) {
             select
             margin="dense"
             id="name"
-            label="Nome do jogo"
-            //defaultValue={}
+            label="Cargo do Funcionario"
+            defaultValue={props.cargo_td}
             SelectProps={{
               MenuProps: {
                   className: 'vnf-designer-value',
@@ -91,8 +101,8 @@ export default function FormDialog(props) {
             // onChange={handleChangeValues}
             fullWidth
           >
-              <MenuItem select value="Desenvolvedor">
-                {'Desenvolvedor'}
+              <MenuItem select value="Desenvolvimento">
+                {'Desenvolvimento'}
               </MenuItem>
                      
               <MenuItem value = {'Suporte em Redes'}>
@@ -118,7 +128,7 @@ export default function FormDialog(props) {
             margin="dense"
             id="data"
             label=""
-            // defaultValue={}
+            defaultValue={props.data_td}
             type="date"
             // onChange={handleChangeValues}
             fullWidth
@@ -127,7 +137,7 @@ export default function FormDialog(props) {
          
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={fechar_modal} color="primary">
             Cancelar
           </Button>
           <Button color="primary" >
