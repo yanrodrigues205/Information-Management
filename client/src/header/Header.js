@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faUser, faPhone, faListNumeric, faPerson, faPaperPlane, faEye} from '@fortawesome/free-solid-svg-icons';
 import './Header.css';
 import Td from './table';
+import { Notify } from 'notiflix';
 
 function App() {
   const [valores, setarValores] = useState();
@@ -43,8 +44,14 @@ function App() {
       console.log(response);
      
     });
-    alert("FUNCIONARIO CADASTRADO COM SUCESSO!");
-    window.location.reload();
+    Notify.success("Funcionário cadastrado com sucesso, recarregando a página!", {
+      position: 'right-bottom',
+      className: '	notiflix-loading'
+    });
+    const funcao = () => {
+      window.location.reload()
+    }
+    setTimeout(funcao, 3500);
     };
 
     useEffect(()=>{
@@ -64,7 +71,7 @@ function App() {
               <NavLink>Sistema de Gerenciamento</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink>-Cadastro de Funcionários</NavLink>
+              <NavLink>- Funcionários</NavLink>
             </NavItem>
         </Nav>
       </Navbar>
@@ -108,7 +115,7 @@ function App() {
 
               <Button type='button' name='botao' onClick={() => cliqueBotao()} color="success">
                 <FontAwesomeIcon icon={ faPaperPlane } className='icone_bt'> </FontAwesomeIcon>
-                  &nbsp;&nbsp;&nbsp;Cadastrar Informações
+                  &nbsp;&nbsp;&nbsp;Contratar Funcionário
               </Button>
           </Col>
           <Col  xs="6">

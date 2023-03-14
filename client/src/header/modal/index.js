@@ -8,12 +8,30 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import {faEye} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MenuItem } from "@material-ui/core";
+import Axios from "axios";
 
 
 export default function FormDialog(props) {
 
-  const [ editar_valores, setar_valores] = useState();
+  const [ editar_valores, setar_valores] = useState({
+    id_fun: props.id_td,
+    nome_fun: props.nome_td,
+    email_fun: props.email_td,
+    cpf_fun: props.cpf_td,
+    cargo_fun: props.cargo_td,
+    fone_fun: props.nome_td
+  });
  
+  const editar_funcionarios = () => {
+    Axios.put("http://locaalhost:3001/editar", {
+      id_fun: props.id_td,
+      nome_fun: props.nome_td,
+      email_fun: props.email_td,
+      cpf_fun: props.cpf_td,
+      cargo_fun: props.cargo_td,
+      fone_fun: props.fone_td
+    })
+  };
   const fechar_modal = () => {
     props.setOpen(false);
   };
